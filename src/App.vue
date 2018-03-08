@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item"><router-link v-bind:to="'/'">EGA</router-link></a>
         <div class="navbar-menu is-active">
