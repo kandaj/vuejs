@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import FileInfo from './FileInfo.vue';
+  import FileInfo from '../files/FileInfo.vue';
   export default {
     components: {
       fileInfo:FileInfo

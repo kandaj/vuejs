@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import ListFiles from './ListFiles.vue';
+  import ListFiles from '../files/ListFiles.vue';
   export default {
     components:{
       listFiles:ListFiles
