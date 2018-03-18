@@ -17,6 +17,7 @@ Vue.use(Buefy,{
   defaultIconPack: 'fa'
 })
 
+export const eventBus = new Vue();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

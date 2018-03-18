@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/pages/Home'
-import GetFileDetails from '@/components/pages/GetFileDetails'
+import FileDetails from '@/components/pages/FileDetails'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/get-file-details',
-      name: 'GetFileDetails',
-      component: GetFileDetails
+      path: '/file-details',
+      name: 'FileDetails',
+      component: FileDetails
     }
   ]
 })

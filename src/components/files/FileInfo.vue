@@ -18,23 +18,23 @@
           </tr>
         </table>
       </div>
-      <div class="column">
-        <h3>Process Log</h3>
-        <b-table
-          :data="tableData"
-          :columns="tableColumns"
-          :default-sort="['timestamp', 'desc']"
-          :paginated="isPaginated"
-          :per-page="perPage"
-          :current-page.sync="currentPage"
-          :pagination-simple="isPaginationSimple"
-          bordered >
-        </b-table>
-      </div>
+      <!--<div class="column">-->
+        <!--<h3>Process Log</h3>-->
+        <!--<b-table-->
+          <!--:data="tableData"-->
+          <!--:columns="tableColumns"-->
+          <!--:default-sort="['timestamp', 'desc']"-->
+          <!--:paginated="isPaginated"-->
+          <!--:per-page="perPage"-->
+          <!--:current-page.sync="currentPage"-->
+          <!--:pagination-simple="isPaginationSimple"-->
+          <!--bordered >-->
+        <!--</b-table>-->
+      <!--</div>-->
     </div>
     <section>
       <div class="columns">
-        <div class="column is-11  pipelinelog">
+        <div class="column is-12  pipelinelog">
           <div class="column is-half is-offset-one-quarter">  <h3>Pipeline Log</h3></div>
           <pre>{{filePipelineLog}}</pre>
         </div>
@@ -54,6 +54,7 @@
     },
     data() {
       return {
+        errors:null,
         fileInfoDetails:null,
         fileProcessLog:null,
         filePipelineLog:null,
@@ -79,7 +80,7 @@
       stableID() {
         if(this.stableID != null){
           this.getDetails(this.stableID);
-          this.getProcessLog(this.stableID);
+//          this.getProcessLog(this.stableID);
           this.getPipelineLog(this.stableID);
         }
       }
@@ -87,15 +88,15 @@
     mounted() {
       if(this.stableID != null) {
         this.getDetails(this.stableID);
-        this.getProcessLog(this.stableID);
+//        this.getProcessLog(this.stableID);
         this.getPipelineLog(this.stableID);
       }
     },
     methods:{
       getDetails: function(){
-        this.$http.get('http://localhost:5000/files/get_details/'+this.stableID)
+        this.$http.get('http://localhost:5000/postgres/get_details/'+this.stableID)
           .then(response => {
-            let data = response.data[0].data[0];
+            let data = response.data.data;
             data['checksums'] = this.getMD5(data.md5,data.process_step);
             this.fileInfoDetails = data;
           })
@@ -104,16 +105,16 @@
           })
       },
       getProcessLog: function(){
-        this.$http.get('http://localhost:5000/files/get_process_log/'+this.stableID)
+        this.$http.get('http://localhost:5000/postgres/get_process_log/'+this.stableID)
           .then(response => {
-            this.tableData = response.data[0].data;
+            this.tableData = response.data.data;
           })
           .catch(e => {
             this.errors.push(e)
           })
       },
       getPipelineLog: function(){
-        this.$http.get('http://localhost:5000/files/get_pipeline_log/'+this.stableID)
+        this.$http.get('http://localhost:5000/postgres/get_pipeline_log/'+this.stableID)
           .then(response => {
             this.filePipelineLog = response.data;
           })

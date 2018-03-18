@@ -71,12 +71,13 @@
 </template>
 
 <script>
+  import {eventBus} from '../../main'
+
   export default {
     name:'ListFiles',
     props:{
       statusCodeID: {
-        type: Number,
-        required:true
+        type: Number
       }
     },
     data() {
@@ -87,11 +88,8 @@
         tableColumns: [
           {
             field: 'file_name',
-            label: 'File Name'
-          },
-          {
-            field: 'file_type',
-            label: 'File Type'
+            label: 'File Name',
+            width:500
           },
           {
             field: 'stable_id',
@@ -127,10 +125,9 @@
     },
     methods: {
       showFiles:function(statusID){
-        this.$http.get('http://localhost:5000/files/get_status/'+statusID)
+        this.$http.get('http://localhost:5000/postgres/get_status/'+statusID)
           .then(response => {
-            this.tableData = response.data[0].data;
-            this.$emit('refreshView');
+            this.tableData = response.data.data;
           })
           .catch(e => {
             this.errors.push(e)
@@ -158,16 +155,18 @@
           stableIDArray.push(value.stable_id);
         }
         postData.push({statusID:this.selectedSC,stableIDs:stableIDArray})
-        this.$http.post('http://localhost:5000/files/update_status/', postData)
-          .then(response => {
-            var res = JSON.parse(response.request.response)
-            this.updatedRows = res.affectedRows;
+        return this.$http.post('http://localhost:5000/postgres/update_status/', postData)
+          .then((response) => {
+            this.updatedRows = response.data.data;
             this.isActive = true;
+            this.checkedRows = [];
             this.showFiles(this.statusCodeID);
+            eventBus.$emit('refreshView');
           })
           .catch(e => {
             this.errors.push(e)
           })
+
       }
     }
   }
@@ -180,4 +179,5 @@
   input {
     min-width:300px;
   }
+
 </style>
