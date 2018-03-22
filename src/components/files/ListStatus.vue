@@ -46,7 +46,7 @@
         this.error = this.post = null
         this.loading = true
         // replace `getPost` with your data fetching util / API wrapper
-        this.$http.get(`http://localhost:5000/postgres/get_count/`)
+        this.$http.get(`files/get_count/`)
           .then(response => {
             this.data = response.data.data;
           })

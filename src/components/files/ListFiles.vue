@@ -125,7 +125,7 @@
     },
     methods: {
       showFiles:function(statusID){
-        this.$http.get('http://localhost:5000/postgres/get_status/'+statusID)
+        this.$http.get('files/get_status/'+statusID)
           .then(response => {
             this.tableData = response.data.data;
           })
@@ -155,7 +155,7 @@
           stableIDArray.push(value.stable_id);
         }
         postData.push({statusID:this.selectedSC,stableIDs:stableIDArray})
-        return this.$http.post('http://localhost:5000/postgres/update_status/', postData)
+        return this.$http.post('files/update_status/', postData)
           .then((response) => {
             this.updatedRows = response.data.data;
             this.isActive = true;

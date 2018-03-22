@@ -4,9 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Buefy from 'buefy'
-import Axios from 'axios'
+import {HTTP} from './common/http-common';
 
-Vue.prototype.$http = Axios;
+Vue.prototype.$http = HTTP;
 
 // Import the styles directly. (Or you could add them via script tags.)
 import 'buefy/lib/buefy.css'
