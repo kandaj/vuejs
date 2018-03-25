@@ -1,7 +1,7 @@
 <template>
   <div class="container is-fluid">
       <div class="columns is-multiline">
-        <div class="column is-" v-for="item in data">
+        <div class="column is-" v-for="item in countData">
           <div class="card" :class="{'status-danger' : (item.total >  100 || item.archive_status_id == 10) ,'status-normal' : (item.total < 100 && item.archive_status_id != 10 )  }">
             <div class="card-content">
               <div class="content">
@@ -23,7 +23,7 @@
     name: 'ListStatus',
     data () {
       return {
-        data: null,
+        countData: null,
         error: null,
         statusID:null,
       }
@@ -48,7 +48,7 @@
         // replace `getPost` with your data fetching util / API wrapper
         this.$http.get(`files/get_count/`)
           .then(response => {
-            this.data = response.data.data;
+            this.countData = response.data.data;
           })
           .catch(e => {
             this.errors.push(e)

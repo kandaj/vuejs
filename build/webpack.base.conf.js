@@ -3,12 +3,14 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 
+var apiHost = process.env.NODE_ENV=== 'production' ? "'http://10.50.5.242:5000/api/v1/'" : "'http://localhost:5000/api/v1/'";
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -67,6 +69,11 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __API__: apiHost
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).

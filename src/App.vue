@@ -7,6 +7,7 @@
         <div class="navbar-menu is-active">
           <div class="navbar-start">
             <a class="navbar-item"><router-link v-bind:to="'/'">Home</router-link></a>
+            <a class="navbar-item"><router-link v-bind:to="'/file-status'">File Status</router-link></a>
             <a class="navbar-item"><router-link v-bind:to="'/file-details'">File Details</router-link></a>
           </div>
         </div>

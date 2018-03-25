@@ -5,6 +5,12 @@ import App from './App'
 import router from './router'
 import Buefy from 'buefy'
 import {HTTP} from './common/http-common';
+import Chartkick from 'chartkick'
+import VueChartkick from 'vue-chartkick'
+import Highcharts from 'highcharts'
+
+window.Highcharts = Highcharts
+Vue.use(VueChartkick, { Chartkick })
 
 Vue.prototype.$http = HTTP;
 
