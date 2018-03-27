@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Buefy from 'buefy'
-import {HTTP} from './common/http-common';
+import {HTTP} from './assets/axios/http-common';
 import Chartkick from 'chartkick'
 import VueChartkick from 'vue-chartkick'
 import Highcharts from 'highcharts'

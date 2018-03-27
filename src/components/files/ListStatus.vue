@@ -18,42 +18,20 @@
 
 <script>
   import {eventBus} from '../../main'
-
+  import {GetFileCounts} from '../../assets/mixins/getFileCounts';
   export default {
     name: 'ListStatus',
-    data () {
-      return {
-        countData: null,
-        error: null,
-        statusID:null,
-      }
-    },
+    mixins:[GetFileCounts],
     created () {
       eventBus.$on('refreshView',() => {
         this.fetchData();
       });
-      this.fetchData();
-    },
-    computed: {
-      // a computed getter
     },
     watch: {
       // call again the method if the route changes
       '$route': 'fetchData'
     },
     methods: {
-      fetchData:function() {
-        this.error = this.post = null
-        this.loading = true
-        // replace `getPost` with your data fetching util / API wrapper
-        this.$http.get(`files/get_count/`)
-          .then(response => {
-            this.countData = response.data.data;
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      },
       setStatus:function(statusID){
         eventBus.$emit('listFiles',statusID)
       }
