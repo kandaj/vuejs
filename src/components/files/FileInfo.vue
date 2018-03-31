@@ -94,7 +94,7 @@
     },
     methods:{
       getDetails: function(){
-        this.$http.get('audit/get_details/'+this.stableID)
+        this.$http.get('audit/get_file_details/'+this.stableID)
           .then(response => {
             let data = response.data.data;
             data['checksums'] = this.getMD5(data.md5,data.process_step);
