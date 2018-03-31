@@ -17,7 +17,7 @@ export const GetFileCounts = {
       this.error = this.post = null
       this.loading = true
       // replace `getPost` with your data fetching util / API wrapper
-      this.$http.get(`files/get_count/`)
+      this.$http.get(`audit/get_count`)
         .then(response => {
           this.countData = response.data.data;
           this.getSortedData();

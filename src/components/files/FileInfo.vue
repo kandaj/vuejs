@@ -94,7 +94,7 @@
     },
     methods:{
       getDetails: function(){
-        this.$http.get('http://localhost:5000/api/v1/files/get_details/'+this.stableID)
+        this.$http.get('audit/get_details/'+this.stableID)
           .then(response => {
             let data = response.data.data;
             data['checksums'] = this.getMD5(data.md5,data.process_step);
@@ -105,7 +105,7 @@
           })
       },
       getProcessLog: function(){
-        this.$http.get('files/get_process_log/'+this.stableID)
+        this.$http.get('audit/get_process_log/'+this.stableID)
           .then(response => {
             this.tableData = response.data.data;
           })
@@ -114,7 +114,7 @@
           })
       },
       getPipelineLog: function(){
-        this.$http.get('files/get_pipeline_log/'+this.stableID)
+        this.$http.get('audit/get_pipeline_log/'+this.stableID)
           .then(response => {
             this.filePipelineLog = response.data;
           })
