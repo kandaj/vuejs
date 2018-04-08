@@ -1,13 +1,16 @@
 {
-  "name": "vuejs",
+  "name": "EGAInternalApp",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "EGA Internal Archive Portal",
   "author": "Jag Kandasamy <kandaj@ebi.ac.uk>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "postinstall": "npm install --prefix ./api |  npm run build",
+    "api": "node api/src/server.js ~/nodejs_properties.txt",
+    "prod-server": "npm run build | npm run api"
   },
   "dependencies": {
     "axios": "^0.18.0",

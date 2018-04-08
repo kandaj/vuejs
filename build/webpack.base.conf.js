@@ -10,7 +10,7 @@ function resolve (dir) {
 }
 
 
-var apiHost = process.env.NODE_ENV=== 'production' ? "'http://10.50.5.242:5000/api/v1/'" : "'http://localhost:5000/api/v1/'";
+var apiHost = process.env.NODE_ENV=== 'production' ? "''" : "'http://localhost:5000'";
 
 module.exports = {
   context: path.resolve(__dirname, '../'),

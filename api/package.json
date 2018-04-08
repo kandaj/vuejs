@@ -1,0 +1,26 @@
+{
+  "name": "package-name",
+  "version": "1.0.0",
+  "description": "package description",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "forever": "0.15.3",
+    "mysql": "^2.5.4",
+    "pg-promise": "^8.2.2",
+    "pm2": "^2.10.1",
+    "properties-reader": "0.0.16",
+    "swagger-ui-express": "^3.0.6",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "request": "^2.83.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "mocha test/index.js"
+  }
+}

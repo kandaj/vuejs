@@ -125,7 +125,7 @@
     },
     methods: {
       showFiles:function(statusID){
-        this.$http.get('audit/get_files/'+statusID)
+        this.$http.get('/api/v1/audit/get_files/'+statusID)
           .then(response => {
             this.tableData = response.data.data;
           })
@@ -155,7 +155,7 @@
           stableIDArray.push(value.stable_id);
         }
         postData.push({statusID:this.selectedSC,stableIDs:stableIDArray})
-        return this.$http.post('audit/update_status/', postData)
+        return this.$http.post('/api/v1/audit/update_status/', postData)
           .then((response) => {
             this.updatedRows = response.data.data;
             this.isActive = true;
