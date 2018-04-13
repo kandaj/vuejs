@@ -19,10 +19,10 @@
   import ListStatus from '../files/ListStatus.vue';
   import ListFiles from '../files/ListFiles.vue';
   export default {
-    components:{
-      ListStatus:ListStatus,
-      listFiles:ListFiles
-    },
+      components:{
+        ListStatus:ListStatus,
+        listFiles:ListFiles
+      },
     name: 'Home',
     data () {
       return {

@@ -72,6 +72,13 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __API__: apiHost
+    }),
+
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
     })
   ],
   node: {

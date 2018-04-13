@@ -19,17 +19,17 @@
         </table>
       </div>
       <!--<div class="column">-->
-        <!--<h3>Process Log</h3>-->
-        <!--<b-table-->
-          <!--:data="tableData"-->
-          <!--:columns="tableColumns"-->
-          <!--:default-sort="['timestamp', 'desc']"-->
-          <!--:paginated="isPaginated"-->
-          <!--:per-page="perPage"-->
-          <!--:current-page.sync="currentPage"-->
-          <!--:pagination-simple="isPaginationSimple"-->
-          <!--bordered >-->
-        <!--</b-table>-->
+      <!--<h3>Process Log</h3>-->
+      <!--<b-table-->
+      <!--:data="tableData"-->
+      <!--:columns="tableColumns"-->
+      <!--:default-sort="['timestamp', 'desc']"-->
+      <!--:paginated="isPaginated"-->
+      <!--:per-page="perPage"-->
+      <!--:current-page.sync="currentPage"-->
+      <!--:pagination-simple="isPaginationSimple"-->
+      <!--bordered >-->
+      <!--</b-table>-->
       <!--</div>-->
     </div>
     <section>
@@ -114,7 +114,7 @@
           })
       },
       getPipelineLog: function(){
-        this.$http.get('/api/v1/  audit/get_pipeline_log/'+this.stableID)
+        this.$http.get('/api/v1/audit/get_pipeline_log/'+this.stableID)
           .then(response => {
             this.filePipelineLog = response.data;
           })

@@ -121,6 +121,19 @@
           }
         }
       }
+    },
+    "/dac/get_downloaders_count": {
+      "get": {
+        "tags": [
+          "Get Authorised Downloaders Count"
+        ],
+        "summary": "Get authorised downloaders count for list of DACS",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

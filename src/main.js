@@ -4,18 +4,20 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Buefy from 'buefy'
-import {HTTP} from './assets/axios/http-common';
+import {HTTP} from './assets/axios/http-common'
 import Chartkick from 'chartkick'
 import VueChartkick from 'vue-chartkick'
 import Highcharts from 'highcharts'
+import '../node_modules/ebi-framework/css/ebi-global.min.css'
+import '../node_modules/ebi-framework/css/theme-ebi-industry.css'
+import '../node_modules/ebi-framework/js/script.min'
+import 'buefy/lib/buefy.css'
 
 window.Highcharts = Highcharts
+
 Vue.use(VueChartkick, { Chartkick })
 
-Vue.prototype.$http = HTTP;
-
-// Import the styles directly. (Or you could add them via script tags.)
-import 'buefy/lib/buefy.css'
+Vue.prototype.$http = HTTP
 
 Vue.config.productionTip = false
 
@@ -23,7 +25,7 @@ Vue.use(Buefy,{
   defaultIconPack: 'fa'
 })
 
-export const eventBus = new Vue();
+export const eventBus = new Vue()
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

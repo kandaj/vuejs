@@ -16,26 +16,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-
 var mysql = require('mysql');
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader(process.argv[2]);
-var dbProperties = properties.path().audit_test;
+var dbProperties = properties.path().pea;
 var db = null;
 var pool  = mysql.createPool({
-    host     : dbProperties.host,
-    port     : dbProperties.port,
-    user     : dbProperties.user,
-    password : dbProperties.password,
-    database : dbProperties.database,
-    insecureAuth: true,
-    connectionLimit : 10
+  host     : dbProperties.host,
+  port     : dbProperties.port,
+  user     : dbProperties.user,
+  password : dbProperties.password,
+  database : dbProperties.database,
+  insecureAuth: true,
+  connectionLimit : 10
 });
 process.on('SIGINT', function () {
-    console.log("Ending Audit MySQL connection pool");
-    pool.end();
+  console.log("Ending PEA MySQL connection pool");
+  pool.end();
 });
 
 module.exports = pool;

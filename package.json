@@ -9,8 +9,9 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "postinstall": "npm install --prefix ./api |  npm run build",
-    "api": "node api/src/server.js ~/nodejs_properties.txt",
-    "prod-server": "npm run build | npm run api"
+    "dev-api": "node api/src/server.js ~/nodejs_properties.txt",
+    "prod-api": "STATIC_HTML='true' node api/src/server.js ~/nodejs_properties.txt",
+    "prod-server": "npm run build | npm run prod-api"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -18,6 +19,7 @@
     "bootstrap-vue": "^2.0.0-rc.1",
     "buefy": "^0.6.3",
     "chartkick": "^2.3.3",
+    "ebi-framework": "^1.3.0",
     "highcharts": "^6.0.7",
     "vue": "^2.5.2",
     "vue-chartkick": "^0.2.1",
@@ -41,6 +43,7 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "jquery": "^3.3.1",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",

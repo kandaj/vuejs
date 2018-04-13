@@ -22,15 +22,17 @@ var http     = require('http'),
     parser   = require('body-parser'),
     files    = require('./routes/files'),
     postgres = require('./routes/postgresFiles'),
+    pea = require('./routes/peaFiles'),
     path = require("path"),
     webRoot = __dirname + '/../../dist/',
     swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger/swagger.json'),
-    history = require('connect-history-api-fallback')
+    history = require('connect-history-api-fallback'),
+    _ = require('underscore')
 
 // Setup express
 var app = express();
-app.use(history())
+
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.set('port', process.env.PORT || 5000);
@@ -40,16 +42,28 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(webRoot + 'index.html'))
-});
+if (!_.isUndefined(process.env.STATIC_HTML)) {
+  app.use(history())
+  app.get('/', function(req, res) {
+    res.sendFile(path.join(webRoot + 'index.html'))
+  });
 
-app.use('/', express.static(webRoot))
+  app.use('/', express.static(webRoot))
+} else {
+  app.get('/', function (req, res) {
+    res.send('<html><body><h1>EGA Internal API</h1></body></html>');
+  });
+
+}
+
+
+
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/files', files);
 app.use('/api/v1', postgres);
+app.use('/api/v1', pea);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

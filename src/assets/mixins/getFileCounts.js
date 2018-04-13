@@ -6,7 +6,9 @@ export const GetFileCounts = {
       statusID:null,
       sortedData: null,
       errorStates: null,
-      processingStates:null
+      processingStates: null,
+      errorStatesObject: null,
+      processingStatesObject: null
     }
   },
   created(){
@@ -20,26 +22,32 @@ export const GetFileCounts = {
       this.$http.get(`/api/v1/audit/get_count`)
         .then(response => {
           this.countData = response.data.data;
-          this.getSortedData();
+          this.getChartData();
         })
         .catch(e => {
           this.errors.push(e)
         })
     },
-    getSortedData(){
+    getChartData(){
       const errorStates = [25,15,10,7,13,6,9,50,52,3];
-      const errorStateArryay = [];
-      const normalStateArryay = [];
+      const errorStateArray = [];
+      const normalStateArray = [];
+      const errorStateObject = [];
+      const normalStateObject = [];
       const filteredArray = this.countData.filter(function(itm){
         if(errorStates.indexOf(itm.archive_status_id) > -1){
-          errorStateArryay.push([itm.archive_status_id,parseInt(itm.total)])
+            errorStateObject.push(itm)
+            errorStateArray.push([itm.archive_status_id,parseInt(itm.total)])
         } else{
-          normalStateArryay.push([itm.archive_status_id,parseInt(itm.total)])
+          normalStateObject.push(itm)
+          normalStateArray.push([itm.archive_status_id,parseInt(itm.total)])
         }
       });
 
-      this.errorStates = errorStateArryay;
-      this.processingStates = normalStateArryay;
+      this.errorStates = errorStateArray;
+      this.errorStatesObject = errorStateObject;
+      this.processingStates = normalStateArray;
+      this.processingStatesObject = normalStateObject;
     }
   }
 }
