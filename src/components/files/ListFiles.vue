@@ -2,9 +2,9 @@
   <div class="columns" v-if="isNaN(statusCodeID) == false && statusCodeID != null">
     <section>
       <transition>
-        <b-notification :active.sync="isActive" type="is-success" has-icon>
-          {{updatedRows}} row(s) has been updated
-        </b-notification>
+        <!--<b-notification :active.sync="isActive" type="is-success" has-icon>-->
+          <!--{{updatedRows}} row(s) has been updated-->
+        <!--</b-notification>-->
       </transition>
 
       <div class="column"><h2 class="heading">Status {{statusCodeID}} Files</h2></div>
@@ -20,18 +20,17 @@
                 </button>
               </div>
               <div class="level-item">
-                <b-select v-model="selectedSC" placeholder="Select a status">
-                  <option v-for="statusCode in statusCodes" :value="statusCode">
-                    {{ statusCode }}
-                  </option>
-                </b-select>
+                <!--<b-select v-model="selectedSC" placeholder="Select a status">-->
+                  <!--<option v-for="statusCode in statusCodes" :value="statusCode">-->
+                    <!--{{ statusCode }}-->
+                  <!--</option>-->
+                <!--</b-select>-->
               </div>
               <div class="level-item">
                 <button class="button is-primary" :disabled="selectedSC == null || selectedSC === statusCodeID " @click="updateFiles()">Update Files</button>
               </div>
             </div>
           </nav>
-
         </div>
         <div class="column">
 
@@ -52,7 +51,7 @@
           </div>
         </div>
       </div>
-      <b-table
+      <b-table name="test"
         :data="tableData"
         :columns="tableColumns"
         :checked-rows.sync="checkedRows"
@@ -172,7 +171,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .heading {
     font-size:18px;
   }

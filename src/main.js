@@ -8,10 +8,19 @@ import {HTTP} from './assets/axios/http-common'
 import Chartkick from 'chartkick'
 import VueChartkick from 'vue-chartkick'
 import Highcharts from 'highcharts'
-import '../node_modules/ebi-framework/css/ebi-global.min.css'
-import '../node_modules/ebi-framework/css/theme-ebi-industry.css'
-import '../node_modules/ebi-framework/js/script.min'
-import 'buefy/lib/buefy.css'
+// import '../node_modules/ebi-framework/css/ebi-global.min.css'
+// import '../node_modules/ebi-framework/css/theme-ebi-industry.css'
+// import '../node_modules/ebi-framework/js/script.min'
+// import 'buefy/lib/buefy.css'
+// import '../static/ega-archive/css/jquery-ui-1.10.4.custom.css'
+// import '../static/ega-archive/css/bootstrap.css'
+// import '../static/ega-archive/css//bootstrap-responsive.css'
+// import '../static/ega-archive/css/font-awesome.min.css'
+// import '../static/ega-archive/css/jquery.bxslider.css'
+// import '../static/ega-archive/css/style.css'
+// import '../static/ega-archive/css/cookiecuttr.css'
+
+Vue.component('b-table', Buefy.Table)
 
 window.Highcharts = Highcharts
 
@@ -21,9 +30,9 @@ Vue.prototype.$http = HTTP
 
 Vue.config.productionTip = false
 
-Vue.use(Buefy,{
-  defaultIconPack: 'fa'
-})
+// Vue.use(Buefy,{
+//   defaultIconPack: 'fa'
+// })
 
 export const eventBus = new Vue()
 /* eslint-disable no-new */
