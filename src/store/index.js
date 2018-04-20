@@ -16,26 +16,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import axios from 'axios';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-export const HTTP = axios.create({
-  baseURL: __API__
-});
+Vue.use(Vuex)
 
-export const HTTP_WITH_CREDENTIALS = axios.create({
-  baseURL: __API__,
-  withCredentials: true
-});
-
-export const getHeader = function () {
-  const tokenData = JSON.parse(window.localStorage.getItem('drupUser'))
-  const headers = {
-    'Content-Type': 'application/json',
+export const store = new Vuex.Store({
+  state: {
+    isLoggedIn: !!localStorage.getItem('drupUser')
   }
-  var options = {
-    xsrfHeaderName: 'X-CSRF-Token',
-    xsrfCookieName: 'X-CSRF-Token',
-    headers
-  }
-  return options
-}
+})

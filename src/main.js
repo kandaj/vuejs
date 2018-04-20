@@ -4,13 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Buefy from 'buefy'
-import {HTTP} from './assets/axios/http-common'
+import {HTTP, HTTP_WITH_CREDENTIALS} from './assets/axios/http-common'
 import Chartkick from 'chartkick'
 import VueChartkick from 'vue-chartkick'
 import Highcharts from 'highcharts'
-// import '../node_modules/ebi-framework/css/ebi-global.min.css'
-// import '../node_modules/ebi-framework/css/theme-ebi-industry.css'
-// import '../node_modules/ebi-framework/js/script.min'
+import {store} from './store/index'
+import underscore from 'vue-underscore'
+import VueCookies from 'vue-cookies'
+
 // import 'buefy/lib/buefy.css'
 // import '../static/ega-archive/css/jquery-ui-1.10.4.custom.css'
 // import '../static/ega-archive/css/bootstrap.css'
@@ -26,18 +27,22 @@ window.Highcharts = Highcharts
 
 Vue.use(VueChartkick, { Chartkick })
 
+Vue.use(underscore)
+
+Vue.use(VueCookies)
+
 Vue.prototype.$http = HTTP
+
+Vue.prototype.$httpWC = HTTP_WITH_CREDENTIALS
 
 Vue.config.productionTip = false
 
-// Vue.use(Buefy,{
-//   defaultIconPack: 'fa'
-// })
 
 export const eventBus = new Vue()
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'
