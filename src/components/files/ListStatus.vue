@@ -1,43 +1,41 @@
 <template>
-  <div class="container is-fluid">
-    <div class="columns">
-      <div class="column is-half">
-        <button class="button is-medium">
-          Error states
-        </button>
-        <div class="columns is-multiline">
-          <div class="column is-" v-for="item in errorStatesObject">
-            <div class="card" :class="{'status-danger' : (item.total >  100 || item.archive_status_id == 10) ,'status-normal' : (item.total < 100 && item.archive_status_id != 10 )  }">
-              <div class="card-content">
-                <div class="content">
-                  <h2>Status ID: {{ item.archive_status_id }}</h2>
-                  <h4>{{item.total}} - Files</h4>
+  <div>
+    <b-container fluid>
+      <b-row>
+        <b-col cols="6" class="mt-3">
+          <b-row align-h="center">
+            <b-button class="btn btn-outline-danger btn-md">Error states</b-button>
+          </b-row>
+          <b-row>
+            <b-col cols="6" class="mt-3" v-for="(item, index) in errorStatesObject" :key="item.archive_status_id">
+              <b-card :class="{'status-danger' : (item.total >  100 || item.archive_status_id == 10) ,'status-normal' : (item.total < 100 && item.archive_status_id != 10 )  }">
+                <div class="card-text">
+                  <h4>Status ID: {{ item.archive_status_id }}</h4>
+                  <h6>{{item.total}} - Files</h6>
                 </div>
-                <button class="button is-info" @click="setStatus(item.archive_status_id)">Show Files</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-half">
-        <button class="button is-medium">
-          Processing states
-        </button>
-        <div class="columns is-multiline">
-          <div class="column is-" v-for="item in processingStatesObject">
-            <div class="card" :class="{'status-danger' : (item.total >  100 || item.archive_status_id == 10) ,'status-normal' : (item.total < 100 && item.archive_status_id != 10 )  }">
-              <div class="card-content">
-                <div class="content">
-                  <h2>Status ID: {{ item.archive_status_id }}</h2>
-                  <h4>{{item.total}} - Files</h4>
+                <b-button class="btn btn-sm" variant="primary" @click="setStatus(item.archive_status_id)">Show Files</b-button>
+              </b-card>
+            </b-col>
+          </b-row>
+        </b-col>
+        <b-col cols="6" class="mt-3">
+          <b-row align-h="center">
+            <b-button class="btn btn-outline-success btn-md">Processing states</b-button>
+          </b-row>
+          <b-row>
+            <b-col cols="6" class="mt-3" v-for="(item, index) in processingStatesObject" :key="item.archive_status_id">
+              <b-card :class="{'status-danger' : (item.total >  100 || item.archive_status_id == 10) ,'status-normal' : (item.total < 100 && item.archive_status_id != 10 )  }">
+                <div class="card-text">
+                  <h4>Status ID: {{ item.archive_status_id }}</h4>
+                  <h6>{{item.total}} - Files</h6>
                 </div>
-                <button class="button is-info" @click="setStatus(item.archive_status_id)">Show Files</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                <b-button class="btn btn-sm" variant="primary" @click="setStatus(item.archive_status_id)">Show Files</b-button>
+              </b-card>
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

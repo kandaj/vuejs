@@ -1,24 +1,30 @@
 <template>
-  <div class="container">
-    <br />
-    <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
-
-        <form  v-on:submit.prevent>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="username">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
-          </div>
-          <button type="submit" class="btn btn-primary" @click="submitForm()">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
+  <b-container class="mt-3">
+    <b-row>
+      <b-col cols="6">
+        <b-form v-on:submit.prevent>
+          <b-form-group label="Username"
+                        label-for="loginUsername">
+            <b-form-input id="loginUsername"
+                          type="email"
+                          v-model="username"
+                          placeholder="Enter your email">
+            </b-form-input>
+          </b-form-group>
+          <b-form-group label="Password"
+                        label-for="loginPassword">
+            <b-form-input id="loginPassword"
+                          type="password"
+                          placeholder="Enter your password"
+                          v-model="password">
+            </b-form-input>
+          </b-form-group>
+          <b-button type="submit" variant="primary" @click="submitForm()">Submit</b-button>
+          <!--<b-button type="reset" variant="danger">Reset</b-button>-->
+        </b-form>
+      </b-col>
+    </b-row>
+  </b-container>
 
 </template>
 

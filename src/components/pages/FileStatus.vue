@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
+    <b-container>
+      <b-row>
+        <b-col>
           <list-status></list-status>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
           <list-files :statusCodeID="parseInt(statusID)"></list-files>
-        </div>
-      </div>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <script>

@@ -1,28 +1,23 @@
 <template>
-  <div id="fileDetails">
-    <br />
-    <div class="container">
-      <div class="columns">
-        <div class="column is-half is-offset-one-quarter">
-          <section>
-            <nav class="level">
-              <!-- Left side -->
-              <div class="level-left">
-                <div class="level-item">
-                  <b-input v-model="stableInputValue" placeholder="Enter File Stable ID"></b-input>
-                </div>
-                <div class="level-item">
-                  <button class="button is-primary" :disabled="stableInputValue == null" @click="setStableId">Get Details</button>
-                </div>
-              </div>
-            </nav>
-          </section>
+  <div id="fileDetails" class="mt-4">
+    <b-row>
+      <b-col cols="8">
+        <b-input-group>
+          <b-form-input v-model="stableInputValue"  placeholder="Enter File Stable ID"></b-form-input>
+          &nbsp;
+          <b-input-group-append>
+            <b-button variant="info" :disabled="stableInputValue == null" @click="setStableId">Get Details</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <div v-if="fileStableID !=null" class="column">
+          <file-info :stableID="fileStableID"></file-info>
         </div>
-      </div>
-      <div v-if="fileStableID !=null" class="column">
-        <file-info :stableID="fileStableID"></file-info>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 

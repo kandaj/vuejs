@@ -13,7 +13,7 @@ v2 colors:
   font-family: "HelveticaNeueLT Pro";
   font-style: normal;
   font-weight: normal;
-  src: url("/fonts/helveticaneueltprolt.eot?#iefix") format("embedded-opentype"), url("/fonts/helveticaneueltprolt.otf") format("opentype"), local("☺"), url("/fonts/helveticaneueltprolt.woff") format("woff"), url("/fonts/helveticaneueltprolt.ttf") format("truetype"), url("/fonts/helveticaneueltprolt.svg#HelveticaNeueLTPro-Lt") format("svg");
+  src: url("../fonts/helveticaneueltprolt.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneueltprolt.otf") format("opentype"), local("☺"), url("../fonts/helveticaneueltprolt.woff") format("woff"), url("../fonts/helveticaneueltprolt.ttf") format("truetype"), url("../fonts/helveticaneueltprolt.svg#HelveticaNeueLTPro-Lt") format("svg");
 }
 
 .form-control {
@@ -852,7 +852,7 @@ span.emlrev {
 /* ==================== Main ===================== */
 
 .main {
-   background:#ced9dd;
+   /*background:#ced9dd;*/
 }
 
 .main .main-logo{

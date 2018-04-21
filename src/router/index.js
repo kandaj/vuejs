@@ -5,6 +5,7 @@ import FileDetails from '@/components/pages/FileDetails'
 import FileStatus from '@/components/pages/FileStatus'
 import DacAuthorizedDownloaders from '@/components/stats/DacAuthorizedDownloaders'
 import Login from '@/components/pages/Login'
+import AccessDenied from '@/components/commons/AccessDenied'
 import {_} from 'vue-underscore';
 
 Vue.use(Router)
@@ -23,7 +24,8 @@ const routes = [
   {
     path: '/file-status',
     name: 'FileStatus',
-    component: FileStatus
+    component: FileStatus,
+    meta: { requiresAuth: true , adminAuth:true}
   },
   {
     path: '/dac-authorized-downloaders',
@@ -35,6 +37,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/access-denied',
+    name: 'AccessDenied',
+    component: AccessDenied
   }
 ]
 
@@ -44,7 +51,7 @@ router.beforeEach((to, from, next) => {
   if(to.meta.requiresAuth) {
     const authUser = JSON.parse(window.localStorage.getItem('drupUser'))
     if(!authUser || !authUser.token) {
-      next({name:'Login'})
+      next({name:'AccessDenied'})
     }
     else if(to.meta.adminAuth) {
       const authUser = JSON.parse(window.localStorage.getItem('drupUser'))

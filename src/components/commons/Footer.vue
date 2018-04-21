@@ -2,7 +2,7 @@
   <div>
     <div class="blue-links-home">
       <div class="container">
-        <div class="row visible-sm visible-xs">
+        <div class="row d-none d-sm-block d-md-none d-block d-sm-none">
           <div rel="access-data-btn" class="col-md-4 col-sm-6 col-xs-12 nopad-l pad-l-mob">
             <div class="data-btn radius-10">
               <a href="https://ega-archive.org/submission-form.php/content.php?node=4" class="glyph-bottom"><i class="fa fa-download"></i></a>
@@ -22,7 +22,7 @@
           <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-5 col-xs-offset-1">
             <div class="browse-menu">
               <p>BROWSE</p>
-              <ul>
+              <ul class="left-footer-links">
                 <li>
                   <a href="https://ega-archive.org/submission-form.php/studies"><i class="fa fa-folder-open fa-fw"></i><span class="hover-line-white">Studies</span></a>
                 </li>
@@ -41,6 +41,22 @@
               </ul>
               <div class="clearfix"></div>
             </div>
+          </div>
+          <div class="d-block d-sm-none d-md-block d-none d-sm-block col-md-4 col-sm-6 col-xs-12 nopad-l">
+            <div class="data-btn radius-10">
+              <a href="https://ega-archive.org/access/data-access" class="glyph-bottom"><i class="fa fa-download"></i></a>
+              <br/>
+              <a href="https://ega-archive.org/access/data-access">I want to access data</a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="d-block d-sm-none d-md-block d-none d-sm-block col-md-4 col-sm-6 col-xs-12 nopad-l">
+            <div class="data-btn data-btn-mob radius-10">
+              <a href="https://ega-archive.org/submission-form.php" class="glyph-bottom"><i class="fa fa-cloud-upload"></i></a>
+              <br/>
+              <a href="https://ega-archive.org/submission-form.php">I have data to submit</a>
+            </div>
+            <div class="clearfix"></div>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6 pull-right">
             <div class="help-menu">
@@ -64,22 +80,6 @@
               </ul>
             </div>
           </div>
-          <div class="hidden-sm hidden-xs col-md-4 col-sm-6 col-xs-12 nopad-l">
-            <div class="data-btn radius-10">
-              <a href="https://ega-archive.org/access/data-access" class="glyph-bottom"><i class="fa fa-download"></i></a>
-              <br/>
-              <a href="https://ega-archive.org/access/data-access">I want to access data</a>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="hidden-sm hidden-xs col-md-4 col-sm-6 col-xs-12 nopad-l">
-            <div class="data-btn data-btn-mob radius-10">
-              <a href="https://ega-archive.org/submission-form.php" class="glyph-bottom"><i class="fa fa-cloud-upload"></i></a>
-              <br/>
-              <a href="https://ega-archive.org/submission-form.php">I have data to submit</a>
-            </div>
-            <div class="clearfix"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -89,10 +89,10 @@
         <div class="container">
           <div class="row">
             <div class="col-md-2 col-sm-2 col-xs-2 elixir-logo" >
-              <a href="https://www.elixir-europe.org/platforms/data/core-data-resources" target="_new"><img alt="Elixir_logo" src="/images/Logo_CDR-mini.png" /></a>
+              <a href="https://www.elixir-europe.org/platforms/data/core-data-resources" target="_new"><img alt="Elixir_logo" src="../../../static/ega-archive/images/Logo_CDR-mini.png" /></a>
             </div>
             <div class="col-md-10 col-sm-10 col-xs-10  elixir-banner-words" >
-              <h4><span>The European Genome-phenome Archive (EGA) is part of the ELIXIR infrastructure.</span></h4>
+              <h5><span>The European Genome-phenome Archive (EGA) is part of the ELIXIR infrastructure.</span></h5>
               <span>EGA is an Elixir Core Data Resource.<strong><a href="https://www.elixir-europe.org/platforms/data/core-data-resources" target="_new" style="color:#666666">  Learn more  ... </a></strong></span>
             </div>
           </div>
@@ -138,13 +138,13 @@
           <div class="col-md-2 col-md-offset-1 hidden-sm hidden-xs"></div>
           <div class="col-md-2 col-sm-6 col-xs-6">
             <a href="http://www.crg.eu/" target="_new">
-              <img class="img-responsive" src="/images/CRG_blue.jpg"/>
+              <img class="img-responsive" src="../../../static/ega-archive/images/CRG_blue.jpg"/>
             </a>
           </div>
           <div class="col-md-1 hidden-sm hidden-xs">&nbsp;</div>
           <div class="col-md-3 col-sm-6 col-xs-6">
             <a href="https://www.ebi.ac.uk" target="_new">
-              <img class="img-responsive" src="/images/ebi.png"/>
+              <img class="img-responsive" src="../../../static/ega-archive/images/ebi.png"/>
             </a>
           </div>
         </div>

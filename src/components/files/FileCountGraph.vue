@@ -1,14 +1,18 @@
 <template>
-  <div class="columns">
-    <div class="column">
-      <h4>Error States</h4>
+  <b-row>
+    <b-col cols="6">
+      <b-row align-h="center">
+        <h4>Error States</h4>
+      </b-row>
       <column-chart :data="errorStates"></column-chart>
-    </div>
-    <div class="column">
-      <h4>Processing States</h4>
+    </b-col>
+    <b-col cols="6">
+      <b-row align-h="center">
+        <h4>Processing States</h4>
+      </b-row>
       <column-chart :data="processingStates"></column-chart>
-    </div>
-  </div>
+    </b-col>
+  </b-row>
 </template>
 
 <script>

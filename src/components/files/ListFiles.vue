@@ -1,70 +1,56 @@
 <template>
-  <div class="columns" v-if="isNaN(statusCodeID) == false && statusCodeID != null">
-    <section>
-      <transition>
-        <!--<b-notification :active.sync="isActive" type="is-success" has-icon>-->
-          <!--{{updatedRows}} row(s) has been updated-->
-        <!--</b-notification>-->
-      </transition>
+  <div v-if="isNaN(statusCodeID) == false && statusCodeID != null">
 
-      <div class="column"><h2 class="heading">Status {{statusCodeID}} Files</h2></div>
-      <div class="columns is-multiline">
-        <div class="column">
-          <nav class="level">
-            <!-- Left side -->
-            <div class="level-left">
-              <div class="level-item">
-                <button class="button field is-danger" @click="checkedRows = []"
-                        :disabled="!checkedRows.length">
-                  <span>Clear checked</span>
-                </button>
-              </div>
-              <div class="level-item">
-                <!--<b-select v-model="selectedSC" placeholder="Select a status">-->
-                  <!--<option v-for="statusCode in statusCodes" :value="statusCode">-->
-                    <!--{{ statusCode }}-->
-                  <!--</option>-->
-                <!--</b-select>-->
-              </div>
-              <div class="level-item">
-                <button class="button is-primary" :disabled="selectedSC == null || selectedSC === statusCodeID " @click="updateFiles()">Update Files</button>
-              </div>
+    <b-container>
+      <b-row  align-h="center" class="mt-5">
+        <b-col cols="6">
+          <div><h2 class="heading">Status {{statusCodeID}} Files</h2></div>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-alert :show="dismissCountDown"
+                   dismissible
+                   variant="warning"
+                   @dismissed="dismissCountdown=0"
+                   @dismiss-count-down="countDownChanged">
+            {{updatedRows}} row(s) has been updated
+          </b-alert>
+        </b-col>
+      </b-row>
+      <b-row class="mt-3">
+        <b-col cols="2">
+          <b-button class="btn btn-md" variant="primary" @click="clearChecked()">Clear Checked</b-button>
+        </b-col>
+        <b-col cols="5">
+          <b-form-select v-model="selectedSC" :options="statusCodes">
+            <template slot="first">
+              <option :value="null" disabled>-- Please select an status --</option>
+            </template>
+          </b-form-select>
+        </b-col>
+        <b-col cols="5">
+          <b-button class="btn btn-md" variant="info" :disabled="selectedSC == null || selectedSC === statusCodeID" @click="updateFiles()">Update</b-button>
+        </b-col>
+      </b-row>
+      <b-row class="mt-3">
+        <b-col>
+          <vue-good-table ref="listFilesTable"
+            :columns="tableColumns"
+            :rows="tableData"
+            :pagination-options="{ enabled: true, perPage: perPage }"
+            :select-options="{
+              enabled: true,
+              selectionInfoClass: 'info-custom'
+             }"
+            :search-options="{ enabled: true }">
+            <div slot="selected-row-actions">
+              <button>Action 1</button>
             </div>
-          </nav>
-        </div>
-        <div class="column">
-
-        </div>
-        <div class="column">
-
-        </div>
-        <div class="column">
-          <div class="field is-grouped">
-            <p class="control is-expanded">
-              <input class="input" type="text" placeholder="Enter Term" v-model="searchTerm" v-on:keyup="filterTable()">
-            </p>
-            <p class="control">
-              <a class="button is-info">
-                Search
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <b-table name="test"
-        :data="tableData"
-        :columns="tableColumns"
-        :checked-rows.sync="checkedRows"
-        :paginated="isPaginated"
-        :per-page="perPage"
-        :current-page.sync="currentPage"
-        :pagination-simple="isPaginationSimple"
-        checkable bordered >
-        <template slot="bottom-left">
-          <b>Total checked</b>: {{ checkedRows.length }}
-        </template>
-      </b-table>
-    </section>
+          </vue-good-table>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 
 </template>
@@ -81,7 +67,7 @@
     },
     data() {
       return{
-        statusCodes:[null,8,14,22,23,25],
+        statusCodes:[1,4,14,34],
         selectedSC:null,
         tableData: [],
         tableColumns: [
@@ -103,15 +89,12 @@
             label: 'Submitted File Name'
           }
         ],
-        checkedRows: [],
-        searchTerm:'',
-        isPaginated: true,
-        isPaginationSimple: false,
-        defaultSortDirection: 'asc',
-        currentPage: 1,
         perPage: 10,
-        isActive: false,
-        updatedRows: false
+        checkedRows: [],
+        updatedRows: false,
+        showDismissibleAlert:false,
+        dismissSecs: 3,
+        dismissCountDown: 0
       }
     },
     watch: {
@@ -132,40 +115,34 @@
             this.errors.push(e)
           })
       },
-      filterTable:function(){
-        var filterKey = this.searchTerm && this.searchTerm.toLowerCase()
-        var data = this.tableData;
-        if (this.searchTerm) {
-          data = data.filter(function (row) {
-            return Object.keys(row).some(function (key) {
-              return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-            })
-          })
-        }else{
-          this.showFiles(this.statusCodeID)
-        }
-        this.tableData = data;
-        return this.tableData
+      countDownChanged (dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
       },
       updateFiles:function(){
-        let postData = [];
-        let stableIDArray = [];
+        let postData = []
+        let stableIDArray = []
+        this.checkedRows = this.$refs['listFilesTable'].selectedRows
         for (let value of this.checkedRows) {
-          stableIDArray.push(value.stable_id);
+          stableIDArray.push(value.stable_id)
         }
+        console.log()
         postData.push({statusID:this.selectedSC,stableIDs:stableIDArray})
         return this.$http.post('/api/v1/audit/update_status/', postData)
           .then((response) => {
-            this.updatedRows = response.data.data;
-            this.isActive = true;
-            this.checkedRows = [];
-            this.showFiles(this.statusCodeID);
-            eventBus.$emit('refreshView');
+            this.updatedRows = response.data.data
+            this.dismissCountDown = 3
+            this.clearChecked()
+            this.showFiles(this.statusCodeID)
+            eventBus.$emit('refreshView')
           })
           .catch(e => {
             this.errors.push(e)
           })
 
+      },
+      clearChecked() {
+        this.$refs['listFilesTable'].unselectAll()
+        this.$refs['listFilesTable'].unselectAllInternal()
       }
     }
   }
