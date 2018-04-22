@@ -23,21 +23,25 @@ var http     = require('http'),
     files    = require('./routes/files'),
     postgres = require('./routes/postgresFiles'),
     pea = require('./routes/peaFiles'),
+    authenticate = require('./routes/authenticate'),
     path = require("path"),
     webRoot = __dirname + '/../../dist/',
     swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger/swagger.json'),
     history = require('connect-history-api-fallback'),
-    _ = require('underscore')
+    _ = require('underscore'),
+    morgan = require('morgan'),
+    jwt = require('jsonwebtoken')
 
 // Setup express
 var app = express();
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
+app.use(morgan('dev'));
 app.set('port', process.env.PORT || 5000);
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -64,6 +68,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/files', files);
 app.use('/api/v1', postgres);
 app.use('/api/v1', pea);
+app.use('/api/v1', authenticate);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

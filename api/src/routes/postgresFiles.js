@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 var express  = require('express'),
-    _     = require('underscore'),
-    router = express.Router();
+    _        = require('underscore'),
+    router   = express.Router();
 var pipelineLogScript = '/Users/kandaj/get_pipeline_log.sh';
 
 

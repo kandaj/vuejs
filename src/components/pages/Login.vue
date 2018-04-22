@@ -49,28 +49,52 @@
         const authUser = {}
         const options = getHeader()
         var app = this
-        this.$httpWC.post(`http://ega-vault.ebi.ac.uk/ega_admin/test-login/user/login`,data)
+        this.$http.post(`/api/v1/authenticate`,data,)
           .then(response => {
             const data = response.data
             if ( response.status == 200 ) {
-              this.tokenCompare(data.token).then(value => {
-                if (value) {
-                  console.log('logging in')
-                  authUser.data = data.user
-                  authUser.sessid = data.sessid
-                  authUser.session_name = data.session_name
-                  authUser.token = data.token
-                  app.$cookies.set("X-CSRF-Token", data.token)
-                  window.localStorage.setItem('drupUser',JSON.stringify(authUser))
-                }
-              }).catch(e => {
-                console.log('out')
-              })
+//              this.tokenCompare(data.token).then(value => {
+//                if (value) {
+//                  console.log('logging in')
+//                  authUser.data = data.user
+//                  authUser.sessid = data.sessid
+//                  authUser.session_name = data.session_name
+//                  authUser.token = data.token
+//                  app.$cookies.set("X-CSRF-Token", data.token)
+//                  window.localStorage.setItem('drupUser',JSON.stringify(authUser))
+//                }
+//              }).catch(e => {
+//                console.log('out')
+//              })
+            } else {
+              console.log('wdewde')
             }
           })
           .catch(e => {
             console.log(e)
           })
+//        this.$httpWC.post(`http://ega-vault.ebi.ac.uk/ega_admin/test-login/user/login`,data)
+//          .then(response => {
+//            const data = response.data
+//            if ( response.status == 200 ) {
+//              this.tokenCompare(data.token).then(value => {
+//                if (value) {
+//                  console.log('logging in')
+//                  authUser.data = data.user
+//                  authUser.sessid = data.sessid
+//                  authUser.session_name = data.session_name
+//                  authUser.token = data.token
+//                  app.$cookies.set("X-CSRF-Token", data.token)
+//                  window.localStorage.setItem('drupUser',JSON.stringify(authUser))
+//                }
+//              }).catch(e => {
+//                console.log('out')
+//              })
+//            }
+//          })
+//          .catch(e => {
+//            console.log(e)
+//          })
       },
       tokenCompare: function(tokenToCompareFromLogin){
         let loggedIn = false
