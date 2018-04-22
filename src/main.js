@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Buefy from 'buefy'
 import {HTTP, HTTP_WITH_CREDENTIALS} from './assets/axios/http-common'
 import Chartkick from 'chartkick'
 import VueChartkick from 'vue-chartkick'
@@ -13,20 +12,9 @@ import underscore from 'vue-underscore'
 import VueCookies from 'vue-cookies'
 import BootstrapVue from 'bootstrap-vue'
 import VueGoodTable from 'vue-good-table'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-good-table/dist/vue-good-table.css'
-// import 'buefy/lib/buefy.css'
-// import '../static/ega-archive/css/jquery-ui-1.10.4.custom.css'
-// import '../static/ega-archive/css/bootstrap.css'
-// import '../static/ega-archive/css//bootstrap-responsive.css'
-// import '../static/ega-archive/css/font-awesome.min.css'
-// import '../static/ega-archive/css/jquery.bxslider.css'
-// import '../static/ega-archive/css/style.css'
-// import '../static/ega-archive/css/cookiecuttr.css'
-
-// Vue.component('b-table', Buefy.Table)
 
 window.Highcharts = Highcharts
 
@@ -36,9 +24,9 @@ Vue.use(underscore)
 
 Vue.use(VueCookies)
 
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue)
 
-Vue.use(VueGoodTable);
+Vue.use(VueGoodTable)
 
 Vue.prototype.$http = HTTP
 
